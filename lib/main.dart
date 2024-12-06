@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:easy_sidemenu/easy_sidemenu.dart';
+import 'package:calendar_view/calendar_view.dart';
 import 'track.dart';
 
 PageController _pageController = PageController();
@@ -30,60 +31,68 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.green,
-          title: const Text('test'),
-        ),
-        body: Row(
-          children: [
-            SideMenu(
-              controller: sideMenu,
-              title: Text("app logo"),
-              footer: Text("login image"),
-              items: items,
-              style: SideMenuStyle(
-                displayMode: SideMenuDisplayMode.auto,
-                hoverColor: Colors.blue[200],
-                selectedColor: Colors.white,
-                selectedTitleTextStyle:
-                    TextStyle(color: Color.fromARGB(255, 18, 170, 241)),
-                selectedIconColor: Color.fromARGB(255, 18, 170, 241),
-                unselectedIconColor: Colors.white70,
-                unselectedTitleTextStyle: TextStyle(color: Colors.white70),
-                showHamburger: false,
-                openSideMenuWidth: 200,
+    return CalendarControllerProvider(
+        controller: EventController(),
+        child: MaterialApp(
+          home: Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.green,
+              title: const Text('test'),
+            ),
+            body: Row(
+              children: [
+                SideMenu(
+                  controller: sideMenu,
+                  title: Text("app logo"),
+                  footer: Text("login image"),
+                  items: items,
+                  style: SideMenuStyle(
+                    displayMode: SideMenuDisplayMode.auto,
+                    hoverColor: Colors.blue[200],
+                    selectedColor: Colors.white,
+                    selectedTitleTextStyle:
+                        TextStyle(color: Color.fromARGB(255, 18, 170, 241)),
+                    selectedIconColor: Color.fromARGB(255, 18, 170, 241),
+                    unselectedIconColor: Colors.white70,
+                    unselectedTitleTextStyle: TextStyle(color: Colors.white70),
+                    showHamburger: false,
+                    openSideMenuWidth: 200,
 
-                backgroundColor: Color.fromARGB(255, 18, 170, 241),
-                // openSideMenuWidth: 200
-              ),
-            ),
-            Expanded(
-              child: PageView(
-                physics: const NeverScrollableScrollPhysics(),
-                controller: _pageController,
-                children: [
-                  TrackPage(),
-                  Container(
-                    child: Center(
-                      child: Text('Expansion Item 1'),
-                    ),
+                    backgroundColor: Color.fromARGB(255, 18, 170, 241),
+                    // openSideMenuWidth: 200
                   ),
-                  Container(
-                    child: Center(
-                      child: Text('Expansion Item 2'),
-                    ),
+                ),
+                Expanded(
+                  child: PageView(
+                    physics: const NeverScrollableScrollPhysics(),
+                    controller: _pageController,
+                    children: [
+                      TrackPage(foci: foci),
+                      Container(
+                        child: Center(
+                          child: Text('Expansion Item 1'),
+                        ),
+                      ),
+                      Container(
+                        child: Center(
+                          child: Text('Expansion Item 2'),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
-    );
+          ),
+        ));
   }
 }
+
+List<List> foci = [
+  ["Exercise", Colors.red],
+  ["Read", Colors.blue],
+  ["Do something", Colors.green],
+];
 
 List<SideMenuItem> items = [
   SideMenuItem(
