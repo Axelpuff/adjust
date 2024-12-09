@@ -1,5 +1,7 @@
 # Adjust
 
+[Demo video](https://www.youtube.com/watch?v=AXsxM3JuK1c)
+
 Adjust is a time tracking utility built on Google Calendar. It allows the user to track their time across multiple focus areas using a start and stop interface. Because it is built on the API, the user can access their data from any device.
 
 Since the app has no backend apart from Google Calendar, it could theoretically be hosted as a static site.
