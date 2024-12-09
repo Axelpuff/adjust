@@ -68,6 +68,10 @@ class IsAuthenticated extends _$IsAuthenticated {
   }
 
   void tryAuth() async {
+    try {
+      await googleSignIn.signIn();
+    }
+    catch (error) {}
     final GoogleSignInAccount? account = await googleSignIn.signInSilently();
     if (account == null) {
       //print("Login failed");
