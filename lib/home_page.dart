@@ -5,6 +5,8 @@ import 'track.dart';
 SideMenuController sideMenu = SideMenuController();
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -21,6 +23,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
+  @override
   Widget build(BuildContext buildContext) {
     return Scaffold(
       body: Row(
@@ -44,14 +47,14 @@ class _HomePageState extends State<HomePage> {
               hoverColor: Colors.blue[200],
               selectedColor: Colors.white,
               selectedTitleTextStyle:
-                  TextStyle(color: Color.fromARGB(255, 18, 170, 241)),
-              selectedIconColor: Color.fromARGB(255, 18, 170, 241),
+                  const TextStyle(color: Color.fromARGB(255, 18, 170, 241)),
+              selectedIconColor: const Color.fromARGB(255, 18, 170, 241),
               unselectedIconColor: Colors.white70,
-              unselectedTitleTextStyle: TextStyle(color: Colors.white70),
+              unselectedTitleTextStyle: const TextStyle(color: Colors.white70),
               showHamburger: false,
               openSideMenuWidth: 200,
 
-              backgroundColor: Color.fromARGB(255, 18, 170, 241),
+              backgroundColor: const Color.fromARGB(255, 18, 170, 241),
               // openSideMenuWidth: 200
             ),
           ),
@@ -59,18 +62,8 @@ class _HomePageState extends State<HomePage> {
             child: PageView(
               physics: const NeverScrollableScrollPhysics(),
               controller: _pageController,
-              children: [
-                TrackPage(),
-                Container(
-                  child: Center(
-                    child: Text('Expansion Item 1'),
-                  ),
-                ),
-                Container(
-                  child: Center(
-                    child: Text('Expansion Item 2'),
-                  ),
-                ),
+              children: const [
+                TrackPage()
               ],
             ),
           ),
@@ -88,11 +81,4 @@ List<SideMenuItem> items = [
     },
     icon: const Icon(Icons.av_timer),
   ),
-  SideMenuItem(
-    title: 'Analyze',
-    onTap: (index, _) {
-      sideMenu.changePage(index);
-    },
-    icon: const Icon(Icons.donut_large),
-  ),  
 ];

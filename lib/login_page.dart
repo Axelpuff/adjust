@@ -1,7 +1,6 @@
 import 'package:adjust/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:googleapis/securitycenter/v1.dart';
 
 class LoginPage extends ConsumerWidget {
   const LoginPage({super.key});
