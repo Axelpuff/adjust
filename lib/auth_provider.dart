@@ -149,6 +149,32 @@ Future<Event?> getLastOpenEvent(CalendarApi calendarApi, String calendarId) asyn
   }
 }
 
+Future<double> getTotalFocusTime(CalendarApi calendarApi, String calendarId) async {
+  double totalTime = 0;
+  final events = await calendarApi.events.list(calendarId);
+  final eventsList = events.items;
+  if (eventsList == null)
+  {
+    return 0;
+  }
+
+  for (final event in eventsList) {
+    final start = event.start;
+    final end = event.end;
+    if (start == null || end == null) {
+      break;
+    }
+    final startDT = start.dateTime;
+    final endDT = end.dateTime;
+    if (startDT == null || endDT == null) {
+      break;
+    }
+    totalTime += endDT.difference(startDT).inSeconds;
+  }
+
+  return totalTime;
+}
+
 Future stopTrackingFocus(CalendarApi calendarApi, String calendarId) async {
   final lastEvent = await getLastOpenEvent(calendarApi, calendarId);
   if (lastEvent == null) {
@@ -218,4 +244,14 @@ class CurrentFocus extends _$CurrentFocus {
     state = AsyncData(focus);
   }
   //await calendarApi.calendars.insert(Calendar(summary: "Test calendar."));
+}
+
+@riverpod
+class PieData extends _$PieData {
+  @override
+  Map<String, double> build() {
+    assert(globalCalendarApi != null);
+    table = 
+    return ;
+  }
 }

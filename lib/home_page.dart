@@ -27,8 +27,17 @@ class _HomePageState extends State<HomePage> {
         children: [
           SideMenu(
             controller: sideMenu,
-            title: Text("app logo"),
-            footer: Text("login image"),
+            title: const SizedBox(
+              height: 200,
+              child: Center(
+                child: Image(
+                  image: AssetImage("images/logo.png"),
+                  width: 80,
+                  height: 80,
+                  fit: BoxFit.scaleDown,
+                ),
+              ),
+            ),
             items: items,
             style: SideMenuStyle(
               displayMode: SideMenuDisplayMode.auto,
